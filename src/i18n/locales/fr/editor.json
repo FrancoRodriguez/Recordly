@@ -152,8 +152,9 @@
 		"zoomTimeline": "Zoomer la timeline",
 		"cycleAnnotations": "Parcourir les annotations",
 		"tab": "Tab",
-		"stepFrame": "Avancer d'une image",
-		"stepSecond": "Avancer d'une seconde"
+		"stepFrame": "Déplacer d'une image",
+		"stepSecond": "Déplacer d'une seconde",
+		"jumpKeyframe": "Aller à l'image clé"
 	},
 	"actions": {
 		"saveAgain": "Enregistrer à nouveau",
