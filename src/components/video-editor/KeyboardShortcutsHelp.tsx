@@ -85,13 +85,13 @@ export function KeyboardShortcutsHelp() {
 							<span className="text-muted-foreground">
 								{t("keyboardShortcuts.stepSecond")}
 							</span>
-							<Kbd>⇧ + ← / →</Kbd>
+							<Kbd>{isMac ? "⇧" : "Shift"} + ← / →</Kbd>
 						</div>
 						<div className="flex items-center justify-between mt-1.5">
 							<span className="text-muted-foreground">
 								{t("keyboardShortcuts.jumpKeyframe")}
 							</span>
-							<Kbd>⌥ + ← / →</Kbd>
+							<Kbd>{isMac ? "⌥" : "Alt"} + ← / →</Kbd>
 						</div>
 					</div>
 				</div>
