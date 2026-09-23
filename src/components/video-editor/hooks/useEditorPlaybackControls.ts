@@ -69,6 +69,35 @@ export function useEditorPlaybackControls({
 		handleSeek(next ? next.time / 1000 : Math.min(timelineDuration, timelinePlayheadTime + 5));
 	}, [handleSeek, timelineDuration, timelinePlayheadTime, timelineRef]);
 
+	const stepFrameForward = useCallback(
+		(fps = 60) => {
+			const delta = 1 / Math.max(1, fps);
+			const targetTime = Math.min(timelineDuration, timelinePlayheadTime + delta);
+			handleSeek(targetTime, { pause: true });
+		},
+		[handleSeek, timelineDuration, timelinePlayheadTime],
+	);
+
+	const stepFrameBackward = useCallback(
+		(fps = 60) => {
+			const delta = 1 / Math.max(1, fps);
+			const targetTime = Math.max(0, timelinePlayheadTime - delta);
+			handleSeek(targetTime, { pause: true });
+		},
+		[handleSeek, timelinePlayheadTime],
+	);
+
+	const stepTimeSeconds = useCallback(
+		(seconds: number) => {
+			const targetTime = Math.max(
+				0,
+				Math.min(timelineDuration, timelinePlayheadTime + seconds),
+			);
+			handleSeek(targetTime, { pause: true });
+		},
+		[handleSeek, timelineDuration, timelinePlayheadTime],
+	);
+
 	return {
 		startPlayback,
 		togglePlayPause,
@@ -76,5 +105,8 @@ export function useEditorPlaybackControls({
 		handleTimelineSeek,
 		handlePreviewSkipBack,
 		handlePreviewSkipForward,
+		stepFrameBackward,
+		stepFrameForward,
+		stepTimeSeconds,
 	};
 }

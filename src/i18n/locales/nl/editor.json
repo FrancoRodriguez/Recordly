@@ -152,7 +152,9 @@
 		"panTimeline": "Tijdlijn verschuiven",
 		"zoomTimeline": "Tijdlijn zoomen",
 		"cycleAnnotations": "Annotaties doorlopen",
-		"tab": "Tab"
+		"tab": "Tab",
+		"stepFrame": "1 frame vooruit",
+		"stepSecond": "1 seconde vooruit"
 	},
 	"actions": {
 		"saveAgain": "Opnieuw opslaan",
