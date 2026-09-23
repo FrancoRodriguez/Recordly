@@ -151,7 +151,9 @@
 		"panTimeline": "Pan Timeline",
 		"zoomTimeline": "Zoom Timeline",
 		"cycleAnnotations": "Cycle Annotations",
-		"tab": "Tab"
+		"tab": "Tab",
+		"stepFrame": "Step 1 Frame",
+		"stepSecond": "Step 1 Second"
 	},
 	"actions": {
 		"saveAgain": "Save Again",

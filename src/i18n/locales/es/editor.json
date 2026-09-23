@@ -151,7 +151,9 @@
 		"panTimeline": "Desplazar línea de tiempo",
 		"zoomTimeline": "Zoom en línea de tiempo",
 		"cycleAnnotations": "Recorrer anotaciones",
-		"tab": "Tab"
+		"tab": "Tab",
+		"stepFrame": "Avanzar 1 fotograma",
+		"stepSecond": "Avanzar 1 segundo"
 	},
 	"actions": {
 		"saveAgain": "Guardar de nuevo",
