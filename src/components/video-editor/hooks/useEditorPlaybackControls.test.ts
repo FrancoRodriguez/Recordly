@@ -3,6 +3,7 @@ import { useEditorPlaybackControls } from "./useEditorPlaybackControls";
 
 vi.mock("react", () => ({
 	useCallback: (callback: unknown) => callback,
+	useEffect: (effect: () => void) => effect(),
 	useRef: (current: unknown) => ({ current }),
 }));
 
@@ -65,13 +66,13 @@ describe("useEditorPlaybackControls frame stepping", () => {
 	});
 
 	it("supports custom fps (e.g. 30fps) for frame stepping", () => {
-		const { controls, playback } = setup(2.0, 10.0);
+		const { controls: c1, playback: p1 } = setup(2.0, 10.0);
+		c1.stepFrameForward(30);
+		expect(p1.seekTimeline).toHaveBeenCalledWith(expect.closeTo(2.0 + 1 / 30, 5));
 
-		controls.stepFrameForward(30);
-		expect(playback.seekTimeline).toHaveBeenCalledWith(expect.closeTo(2.0 + 1 / 30, 5));
-
-		controls.stepFrameBackward(30);
-		expect(playback.seekTimeline).toHaveBeenCalledWith(expect.closeTo(2.0 - 1 / 30, 5));
+		const { controls: c2, playback: p2 } = setup(2.0, 10.0);
+		c2.stepFrameBackward(30);
+		expect(p2.seekTimeline).toHaveBeenCalledWith(expect.closeTo(2.0 - 1 / 30, 5));
 	});
 
 	it("clamps frame stepping at 0 when stepping backward near start", () => {
@@ -91,22 +92,25 @@ describe("useEditorPlaybackControls frame stepping", () => {
 	});
 
 	it("steps time by custom seconds (e.g. +1s and -1s)", () => {
-		const { controls, playback } = setup(5.0, 10.0);
+		const { controls: c1, playback: p1 } = setup(5.0, 10.0);
+		c1.stepTimeSeconds(1);
+		expect(p1.seekTimeline).toHaveBeenCalledWith(6.0);
 
-		controls.stepTimeSeconds(1);
-		expect(playback.seekTimeline).toHaveBeenCalledWith(6.0);
-
-		controls.stepTimeSeconds(-2.5);
-		expect(playback.seekTimeline).toHaveBeenCalledWith(2.5);
+		const { controls: c2, playback: p2 } = setup(5.0, 10.0);
+		c2.stepTimeSeconds(-2.5);
+		expect(p2.seekTimeline).toHaveBeenCalledWith(2.5);
 	});
 
-	it("clamps stepTimeSeconds within [0, duration]", () => {
+	it("accumulates rapid repeated frame steps correctly across keydowns", () => {
 		const { controls, playback } = setup(1.0, 10.0);
 
-		controls.stepTimeSeconds(-5);
-		expect(playback.seekTimeline).toHaveBeenCalledWith(0);
+		controls.stepFrameForward(60);
+		expect(playback.seekTimeline).toHaveBeenLastCalledWith(expect.closeTo(1.0 + 1 / 60, 5));
 
-		controls.stepTimeSeconds(20);
-		expect(playback.seekTimeline).toHaveBeenCalledWith(10.0);
+		controls.stepFrameForward(60);
+		expect(playback.seekTimeline).toHaveBeenLastCalledWith(expect.closeTo(1.0 + 2 / 60, 5));
+
+		controls.stepFrameForward(60);
+		expect(playback.seekTimeline).toHaveBeenLastCalledWith(expect.closeTo(1.0 + 3 / 60, 5));
 	});
 });

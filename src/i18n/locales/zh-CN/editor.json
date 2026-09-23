@@ -153,7 +153,8 @@
 		"cycleAnnotations": "循环切换注释",
 		"tab": "Tab",
 		"stepFrame": "移动 1 帧",
-		"stepSecond": "移动 1 秒"
+		"stepSecond": "移动 1 秒",
+		"jumpKeyframe": "跳转到关键帧"
 	},
 	"actions": {
 		"saveAgain": "再次保存",

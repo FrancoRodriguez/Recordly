@@ -152,8 +152,9 @@
 		"zoomTimeline": "Zoom en línea de tiempo",
 		"cycleAnnotations": "Recorrer anotaciones",
 		"tab": "Tab",
-		"stepFrame": "Avanzar 1 fotograma",
-		"stepSecond": "Avanzar 1 segundo"
+		"stepFrame": "Mover 1 fotograma",
+		"stepSecond": "Mover 1 segundo",
+		"jumpKeyframe": "Saltar al keyframe"
 	},
 	"actions": {
 		"saveAgain": "Guardar de nuevo",

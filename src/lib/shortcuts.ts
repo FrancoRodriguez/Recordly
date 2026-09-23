@@ -158,8 +158,14 @@ export function formatBinding(binding: ShortcutBinding, isMac: boolean): string 
 export function mergeWithDefaults(partial: Partial<ShortcutsConfig>): ShortcutsConfig {
 	const merged = { ...DEFAULT_SHORTCUTS };
 	for (const action of SHORTCUT_ACTIONS) {
-		if (partial[action]) {
-			merged[action] = partial[action] as ShortcutBinding;
+		const candidate = partial[action];
+		if (candidate && typeof candidate.key === "string") {
+			const conflictsWithFixed = FIXED_SHORTCUTS.some((fixed) =>
+				fixed.bindings.some((b) => bindingsEqual(b, candidate)),
+			);
+			if (!conflictsWithFixed) {
+				merged[action] = candidate;
+			}
 		}
 	}
 	return merged;

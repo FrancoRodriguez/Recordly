@@ -79,13 +79,19 @@ export function KeyboardShortcutsHelp() {
 							<span className="text-muted-foreground">
 								{t("keyboardShortcuts.stepFrame")}
 							</span>
-							<Kbd>, / .</Kbd>
+							<Kbd>, / . / ← / →</Kbd>
 						</div>
 						<div className="flex items-center justify-between mt-1.5">
 							<span className="text-muted-foreground">
 								{t("keyboardShortcuts.stepSecond")}
 							</span>
 							<Kbd>⇧ + ← / →</Kbd>
+						</div>
+						<div className="flex items-center justify-between mt-1.5">
+							<span className="text-muted-foreground">
+								{t("keyboardShortcuts.jumpKeyframe")}
+							</span>
+							<Kbd>⌥ + ← / →</Kbd>
 						</div>
 					</div>
 				</div>

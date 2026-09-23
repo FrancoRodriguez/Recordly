@@ -153,7 +153,8 @@
 		"cycleAnnotations": "Cycle Annotations",
 		"tab": "Tab",
 		"stepFrame": "Step 1 Frame",
-		"stepSecond": "Step 1 Second"
+		"stepSecond": "Step 1 Second",
+		"jumpKeyframe": "Jump to Keyframe"
 	},
 	"actions": {
 		"saveAgain": "Save Again",
